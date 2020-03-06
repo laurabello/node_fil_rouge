@@ -1,6 +1,5 @@
 const express = require("express");
 const bodyParser = require("body-parser");
-// const path = require('path');
 
 const app = express();
 
@@ -10,7 +9,7 @@ app.use(bodyParser.json());
 // parse requests of content-type: application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: true }));
 
-// simple route
+// home route
 app.get("/", (req, res) => {
   res.sendFile( "index.html", {root: 'views/'} );
 });

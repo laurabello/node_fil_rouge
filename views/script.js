@@ -29,48 +29,48 @@ function displayProducts() {
  * @param {Array} list The list of the products fetched with the API
  */
 function productsList(list) {
-
     if ((productsContainer.childNodes.length == 0)) {
         list.forEach(product => {
-            // Display the table
-            document.querySelector('#productsTable').classList.remove('productsTableOff');
+                // Display the table
+                document.querySelector('#productsTable').classList.remove('productsTableOff');
 
-            // Create a row for the product
-            let row = productsContainer.insertRow();
+                // Create a row for the product
+                let row = productsContainer.insertRow();
 
-            // Create, insert and fill in the cells
-            row.insertCell().appendChild(document.createTextNode(product.id));
-            row.insertCell().appendChild(document.createTextNode(product.name));
-            row.insertCell().appendChild(document.createTextNode(product.price));
+                // Create, insert and fill in the cells
+                row.insertCell().appendChild(document.createTextNode(product.id));
+                row.insertCell().appendChild(document.createTextNode(product.name));
+                row.insertCell().appendChild(document.createTextNode(product.price));
 
-            // Create, insert and fill in the quantity cell with a data-id attribute
-            let cell = row.insertCell()
-            cell.setAttribute('data-id', product.id);
-            cell.appendChild(document.createTextNode(product.quantity));
+                // Create, insert and fill in the quantity cell with a data-id attribute
+                let cell = row.insertCell()
+                cell.setAttribute('data-id', product.id);
+                cell.appendChild(document.createTextNode(product.quantity));
 
 
-            // Create a column to add product to the cart
-            let addToCart = document.createElement('input');
-            addToCart.setAttribute('type', 'button');
-            addToCart.setAttribute('value', "+");
-            addToCart.setAttribute('data-id', product.id);
-            addToCart.classList.add('addToCart');
-            addToCart.addEventListener('click', addToCaddy);
+                // Create a column to add product to the cart
+                let addToCart = document.createElement('input');
+                addToCart.setAttribute('type', 'button');
+                addToCart.setAttribute('value', "+");
+                addToCart.setAttribute('data-id', product.id);
+                addToCart.classList.add('addToCart');
+                addToCart.addEventListener('click', addToCaddy);
 
-            // Add a column to remove product from the cart
-            let removeFromCart = document.createElement('input');
-            removeFromCart.setAttribute('type', 'button');
-            removeFromCart.setAttribute('value', "-");
-            removeFromCart.setAttribute('data-id', product.id);
-            removeFromCart.classList.add('removeFromCart');
-            removeFromCart.addEventListener('click', removeFromCaddy);
+                // Add a column to remove product from the cart
+                let removeFromCart = document.createElement('input');
+                removeFromCart.setAttribute('type', 'button');
+                removeFromCart.setAttribute('value', "-");
+                removeFromCart.setAttribute('data-id', product.id);
+                removeFromCart.classList.add('removeFromCart');
+                removeFromCart.addEventListener('click', removeFromCaddy);
 
-            // Insert the select column in the table
-            let divQuantity = document.createElement('div');
-            divQuantity.appendChild(addToCart);
-            divQuantity.appendChild(removeFromCart);
-            row.insertCell(3).appendChild(divQuantity);
-        })
+                // Insert the select column in the table
+                let divQuantity = document.createElement('div');
+                divQuantity.classList.add("level")
+                divQuantity.appendChild(addToCart);
+                divQuantity.appendChild(removeFromCart);
+                row.insertCell(3).appendChild(divQuantity);
+            })
     }
 }
 
@@ -110,7 +110,7 @@ function caddyList() {
         }
     })
 
-    // Remove products with quantiry = 0 from the cart
+    // Remove products with quantity = 0 from the cart
     cart = cart.filter(product => product.quantity > 0);
 
     // Manage the message
