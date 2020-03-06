@@ -1,7 +1,6 @@
 const express = require("express");
 const bodyParser = require("body-parser");
-
-
+// const path = require('path');
 
 const app = express();
 
@@ -13,17 +12,10 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 // simple route
 app.get("/", (req, res) => {
-  res.send( "Hello express!" );
+  res.sendFile( "index.html", {root: 'views/'} );
 });
 
-// route to get name parameters
-// app.get("/user/:name", (req, res) => {
-//     res.send(`Hello ${req.params.name} !`);
-// });
-
-// app.get("/products/:id", (req, res) => {
-//     res.send(`id : ${req.params.id}`);
-// });
+app.use(express.static(__dirname + '/views'))
 
 require("./routes/product.routes.js")(app);
 
